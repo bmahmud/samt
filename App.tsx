@@ -25,6 +25,7 @@ import { angleDiff, distanceToKaaba, norm360, qiblaBearing } from './src/qibla';
 import { C, F } from './src/theme';
 
 const ALIGN_TOLERANCE = 3; // degrees
+const KM_TO_MI = 0.621371;
 
 type Status = 'loading' | 'denied' | 'ready' | 'error';
 
@@ -308,7 +309,7 @@ function QiblaScreen() {
               </Text>
               {coords && (
                 <Text style={styles.meta}>
-                  {Math.round(distanceToKaaba(coords.lat, coords.lon)).toLocaleString()} KM TO MAKKAH
+                  {Math.round(distanceToKaaba(coords.lat, coords.lon) * KM_TO_MI).toLocaleString()} MILES TO MAKKAH
                 </Text>
               )}
               <Text style={styles.calib}>HOLD FLAT · AWAY FROM METAL · FIGURE-8 TO CALIBRATE</Text>
